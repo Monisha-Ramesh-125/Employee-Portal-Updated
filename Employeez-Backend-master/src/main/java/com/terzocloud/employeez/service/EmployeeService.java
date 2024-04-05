@@ -23,12 +23,11 @@ public interface EmployeeService {
 
     EmployeeDto updateEmployee(UpdateEmployeeDto updateDto);
 
-    SearchDto searchEmployees(String query,int offset, String field, String direction);
+    
 
     UpdateEmployeeDto findByIdForEdit(Integer employeeId);
 
-    List<EmployeeDto> findEmployeesWithPagination(int offset, String field, String direction);
-
+   
     int findEmployeesCount();
 
     DashboardDto getDashboardDetails(HttpServletRequest request);
