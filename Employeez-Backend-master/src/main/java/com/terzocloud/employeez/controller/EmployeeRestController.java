@@ -58,30 +58,14 @@ public class EmployeeRestController {
     public Department  findDepartment(@PathVariable Integer employeeId){
         return employeeService.findDepartment(employeeId);
     }
-    @GetMapping("/employees/{searchQuery}/{offset}/{field}/{direction}")
-    public SearchDto searchEmployees(@PathVariable String searchQuery,
-                                             @PathVariable int offset,
-                                             @PathVariable String field,
-                                             @PathVariable String direction
-                                             ){
-        SearchDto searchDto = employeeService.searchEmployees(searchQuery,offset,field,direction);
-        return searchDto;
-    }
-    //for update
+   
     @GetMapping("/employees/edit/{employeeId}")
     public UpdateEmployeeDto findEmployeeByIdForEdit(@PathVariable Integer employeeId){
         UpdateEmployeeDto updateEmployeeDto = employeeService.findByIdForEdit(employeeId);
         return updateEmployeeDto;
     }
 
-    @GetMapping("/employees/{offset}/{field}/{direction}")
-    public List<EmployeeDto> findEmployeesWithPagination(@PathVariable int offset,
-                                                         @PathVariable String field,
-                                                         @PathVariable String direction){
-        List<EmployeeDto> employees = employeeService.findEmployeesWithPagination(offset, field,
-        direction);
-        return employees;
-    }
+
 
     @GetMapping("/employees/count")
     public int findEmployeesCount(HttpServletRequest request){
