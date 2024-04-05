@@ -143,15 +143,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         return mapToEmployeeDto(employeeRepository.save(employee));
     }
 
-    @Override
-    public SearchDto searchEmployees(String query,int offset, String field, String direction) {
-        int itemsPerPage = 3;
-        Pageable pageable = PageRequest.of(offset - 1,itemsPerPage, Sort.Direction.valueOf(direction),field);
-        int size = employeeRepository.searchEmployees(query).size();
-        List<EmployeeDto> employeeDtos =  employeeRepository.searchEmployees(query,pageable).stream().map(employee -> mapToEmployeeDto(employee)).collect(Collectors.toList());
-        SearchDto searchDto = new SearchDto(employeeDtos,size);
-        return searchDto;
-    }
 
     @Override
     public UpdateEmployeeDto findByIdForEdit(Integer employeeId) {
@@ -164,17 +155,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 
-    @Override
-    public List<EmployeeDto> findEmployeesWithPagination(int offset, String field, String direction) {
-        int itemsPerPage = 3;
-        Pageable pageable = PageRequest.of(offset - 1,itemsPerPage, Sort.Direction.valueOf(direction),field);
-        Page<Employee> employees = employeeRepository.findAll(pageable);
-        List<EmployeeDto> employeeDtos = employees.stream()
-                .map(employee -> mapToEmployeeDto(employee))
-                .toList();
-        System.out.println(employeeDtos);
-        return employeeDtos;
-    }
+    
 
     @Override
     public int findEmployeesCount() {
